@@ -1,6 +1,6 @@
 #print("Hello World!")
 
-fileLocation = 'C:/Users/djole/PycharmProjects/madlibs/textFiles/tarzan.txt';
+fileLocation = 'G:/My Drive/personal/cs_projects/python_projects/madlibs/textFiles/tarzan.txt';
 
 textFile = open(fileLocation, "r");
 
