@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../firstClasses/.idea/firstClass.iml" filepath="$PROJECT_DIR$/../firstClasses/.idea/firstClass.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/madlibs.iml" filepath="$PROJECT_DIR$/.idea/madlibs.iml" />
     </modules>
   </component>

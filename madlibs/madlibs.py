@@ -1,6 +1,6 @@
 import os.path
 
-def createMadlib(filename)
+def createMadlib(filename);
 
 print("Welcome to Madlibs!\nI will ask you to provide various words\nand phrases to fill in a story.\nAt the end, I will display your story to you.\n")
 
