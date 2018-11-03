@@ -1,8 +1,9 @@
 from car import Car
 
-Mercedes = Car('Mercedes', 'S Class', 'Red');
 
 def main():
+        Mercedes = Car('Mercedes', 'S Class', 'Red');
+
         print(Mercedes.color)
         print(Mercedes.condition)
 
