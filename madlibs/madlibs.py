@@ -1,31 +1,48 @@
 import os.path
 
-def createMadlib(filename);
-
-print("Welcome to Madlibs!\nI will ask you to provide various words\nand phrases to fill in a story.\nAt the end, I will display your story to you.\n")
-
-
-fileName = input("Mad Lib input file? ")
-fileLocation = 'G:/My Drive/personal/cs_projects/python_projects/madlibs/textFiles/' + fileName
-
-
-while os.path.exists(fileLocation) == False:
-    print("That file does not exist. Please try again.\n")
+def readMadlibFile():
     fileName = input("Mad Lib input file? ")
     fileLocation = 'G:/My Drive/personal/cs_projects/python_projects/madlibs/textFiles/' + fileName
 
-textFile = open(fileLocation, "r");
+    while os.path.exists(fileLocation) == False:
+        print("That file does not exist. Please try again.\n")
+        fileName = input("Mad Lib input file? ")
+        fileLocation = 'G:/My Drive/personal/cs_projects/python_projects/madlibs/textFiles/' + fileName
+
+    textFile = open(fileLocation, "r");
+    return textFile.readlines();
 
 
-lines = textFile.readlines();
 
-#print(lines)
-print(len(lines))
+def createMadlib(lines):
+    newLib =[]
+    for line in lines:
+        for j in range(len(line)):
+            if j < len(line):
+                if line[j] == '<':
+                    endInd = line.index('>')
+                    lib = input("Please type a " + line[j + 1: endInd] + ": ")
+                    line = line[:j] + lib + line[endInd + 1:]
 
-for i in lines:
-    print(i)
+        newLib.append(line)
+    return newLib
 
-# starting code again here
+
+
+
+def main():
+    print("Welcome to Madlibs!\nI will ask you to provide various words\nand phrases to fill in a story.\nAt the end, I will display your story to you.\n")
+    emptyMadlib = readMadlibFile()
+    newLib = createMadlib(emptyMadlib)
+
+
+    for i in newLib:
+        print(i)
+
+
+
+if __name__ == "__main__":main()
+
 
 
 
