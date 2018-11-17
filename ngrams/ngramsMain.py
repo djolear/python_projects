@@ -45,21 +45,22 @@ def readFile(input, n):
 
     return myDict;
 
-def generateStory(nGramDict, numWords):
-    myStory = [];
+def generateStory(nGramDict, numWords, nGrams):
     keys = list(nGramDict.keys());
-    randStartIndex = random.randint(1, len(keys));
+    randStartIndex = random.randint(1, len(keys) - 1);
     randStart = keys[randStartIndex];
-    myStory.append(randStart)
+    myStory = randStart.split();
     currentGram = randStart;
-    print(currentGram)
-    for i in range(0, numWords - 1 - len(randStart)):
-       currentValue = nGramDict[currentGram]
-       newWordIndex = random.randint(0, len(currentValue));
 
+    startLength = len(myStory)
+    for i in range(0, numWords - startLength):
+       currentValue = nGramDict[currentGram]
+       newWordIndex = random.randint(0, len(currentValue) - 1);
        newWord = currentValue[newWordIndex];
-       newWindow = currentGram[1:] + " " + newWord;
-       myStory.append(newWindow);
+       newWindow = ' '.join(currentGram.split()[1:]) + " " + newWord;
+       myStory.append(newWord);
+
+       currentGram = newWindow;
 
 
 
@@ -72,11 +73,26 @@ def main():
 
     welcome();
     fileLocation = getInput();
-    nGrams = input("How many grams? ");
+
+    nGrams = input("Value of N? ");
+    while (nGrams.isdigit() == False):
+        print("That input was not a number.\n");
+        nGrams = input("Value of N? ");
+
     numWords = input("Number of words to generate (0 to quit)? ");
-    #if numWords = 0, quit
-    nGramDict = readFile(fileLocation, int(nGrams));
-    nGramStory = generateStory(nGramDict, int(numWords))
-    print(nGramStory)
+    while (numWords.isdigit() == False):
+        print("That input was not a number.");
+        numWords = input("Number of words to generate (0 to quit)? ");
+
+    while (int(numWords) != 0):
+        nGramDict = readFile(fileLocation, int(nGrams));
+        nGramStory = generateStory(nGramDict, int(numWords), int(nGrams))
+        nGramStory = ' '.join(nGramStory);
+        print('...' + nGramStory + '...\n');
+
+        numWords = input("Number of words to generate (0 to quit)? ");
+        while (numWords.isdigit() == False):
+            print("That input was not a number.");
+            numWords = input("Number of words to generate (0 to quit)? ");    print('Exiting.')
 
 if __name__ == "__main__": main()
