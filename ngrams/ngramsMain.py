@@ -92,7 +92,7 @@ def main():
 
         numWords = input("Number of words to generate (0 to quit)? ");
         while (numWords.isdigit() == False):
-            print("That input was not a number.");
+            print("That input was not a number.\n");
             numWords = input("Number of words to generate (0 to quit)? ");    print('Exiting.')
 
 if __name__ == "__main__": main()
