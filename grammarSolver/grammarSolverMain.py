@@ -1,6 +1,8 @@
 import os.path
 import random
 
+
+
 def getFileName():
     fileName = input("Grammar file name? ");
     fileLocation = 'G:/My Drive/personal/cs_projects/python_projects/grammarSolver/res/' + fileName
@@ -23,20 +25,20 @@ def buildGrammar(input):
         myDict[key] = values;
     return myDict;
 
+
+
 def generateGrammar(grammar, symbol, text):
     if symbol not in grammar:
-        text = text + symbol;
-        return text;
+        text = text.append(symbol);
+        return;
     else:
-        print(symbol)
-        values = grammar[symbol];
-        values = values.split()
-        for symbol in values:
+        grammarValues = grammar[symbol];
+        randInd = random.randint(0, len(grammarValues) - 1);
+        randValue = str(grammarValues[randInd]).split()
+        for symbol in randValue:
             generateGrammar(grammar, symbol, text);
-            #r = random.randint(0, len(values) - 1);
-            #newSymbol = values[r];
 
-    return text;
+    return;
 
 
 
@@ -45,13 +47,26 @@ def main():
     fileLocation = getFileName();
     grammar = buildGrammar(fileLocation);
 
+    symbol = 1;
 
-    symbol = input("Symbol to generate (Enter to quit)? ");
-    numSymbols = input("How many to generate? ");
+    while(symbol != ""):
 
-    text = "";
-    output = generateGrammar(grammar, symbol, text)
-    print(output)
+        symbol = input("Symbol to generate (Enter to quit)? ");
+        if symbol not in grammar.keys():
+            print("That symbol is not valid.\n")
+            symbol = input("Symbol to generate (Enter to quit)? ");
+
+        numSymbols = input("How many to generate? ");
+
+        while (numSymbols.isdigit() == False):
+            print("That input was not a number.\n");
+            numSymbols = input("How many to generate? ");
+
+        for i in range(int(numSymbols)):
+            text = [];
+            generateGrammar(grammar, symbol, text);
+            grammarStory = ' '.join(text);
+            print(str(i) + '. ' + grammarStory + '\n');
 
 
 
