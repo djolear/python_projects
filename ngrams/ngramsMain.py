@@ -47,7 +47,7 @@ def readFile(input, n):
 
 def generateStory(nGramDict, numWords, nGrams):
     keys = list(nGramDict.keys());
-    randStartIndex = random.randint(1, len(keys) - 1);
+    randStartIndex = random.randint(0, len(keys) - 1);
     randStart = keys[randStartIndex];
     myStory = randStart.split();
     currentGram = randStart;
