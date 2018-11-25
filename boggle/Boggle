@@ -1,0 +1,38 @@
+import random
+
+class Boggle(object):
+    CUBES = [
+        "AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS",
+        "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
+        "DISTTY", "EEGHNW", "EEINSU", "EHRTVW",
+        "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"
+    ];
+
+    board = [];
+
+    def __init__(self, boardText, dictionary):
+        self.humanScore = 0;
+        self.computerScore = 0;
+        self.numRows = 4;
+        self.numCols = 4;
+        self.letters = [];
+        self.dictionary = dictionary;
+
+        if(len(boardText) == 0):
+            for i in range(16):
+                cube = [];
+                curCube = self.CUBES[i];
+                for j in range(len(curCube)):
+                    cube.append(curCube[j]);
+                random.shuffle(cube);
+                self.letters.append(cube[0]);
+
+        i = 0;
+        for r in range(4):
+            for c in range(4):
+                self.board[r][c] = self.letters[i];
+                i = i + 1;
+
+
+
+
